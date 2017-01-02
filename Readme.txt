@@ -1,0 +1,1 @@
+Makse sure you merge all the folders under AppBroker. This folder also contains backgrounds and one video for the H5 examples.

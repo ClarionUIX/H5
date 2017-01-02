@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dictionary Name="Inventory" Version="1" StructureChecked="1" DctxFormat="4">
+	<DictionaryVersion Version="1" Description="Initial version"/>
+	<Table Guid="{dd147520-f90e-4eae-be9e-b2d7ebba5604}" Name="Inventory" Prefix="INV" Driver="TOPSPEED" Create="true" Thread="true" Bindable="true">
+		<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:40:25PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:45:52PM" ModifiedVersionNumber="1"/>
+		<Field Guid="{59933bfd-32d2-40b9-88b8-213ea76a789e}" Name="ID" DataType="LONG" Size="4" ScreenPicture="@P###-###P" ScreenPrompt="ID:" ReportHeading="ID" Justification="RIGHT" Offset="1" ReportControl=" STRING(@P###-###P),USE(INV:ID),RIGHT(1)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;ID:&apos;),USE(?INV:ID:Prompt)"/>
+				<Line Text=" ENTRY(@P###-###P),USE(INV:ID),RIGHT(1)"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:41:35PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:41:35PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NOCHECKS"/>
+		</Field>
+		<Field Guid="{24e8d8a0-5c64-4c27-9c37-75bad75d784f}" Name="Name" DataType="STRING" Size="200" ScreenPicture="@s200" ScreenPrompt="Name:" ReportHeading="Name" ReportControl=" STRING(@s200),USE(INV:Name)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Name:&apos;),USE(?INV:Name:Prompt)"/>
+				<Line Text=" ENTRY(@s200),USE(INV:Name),REQ"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:42:05PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:42:05PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NONZERO"/>
+		</Field>
+		<Field Guid="{820729b3-017a-4bb5-b6c2-1a67da4a741b}" Name="Description" DataType="STRING" Size="2048" ScreenPicture="@s255" ScreenPrompt="Description:" ReportHeading="Description" ReportControl=" STRING(@s255),USE(INV:Description)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Description:&apos;),USE(?INV:Description:Prompt)"/>
+				<Line Text=" TEXT,USE(INV:Description)"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:42:35PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:42:35PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NOCHECKS"/>
+		</Field>
+		<Field Guid="{2b39b274-938d-44f2-aa0a-f2439abfd2b0}" Name="Price" DataType="DECIMAL" Size="10" Places="4" ScreenPicture="@n-13.4" ScreenPrompt="Price:" ReportHeading="Price" Justification="DECIMAL" Offset="12" ReportControl=" STRING(@n-13.4),USE(INV:Price),DECIMAL(12)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Price:&apos;),USE(?INV:Price:Prompt)"/>
+				<Line Text=" ENTRY(@n-13.4),USE(INV:Price),DECIMAL(12),REQ"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:43:27PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:43:27PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NONZERO"/>
+		</Field>
+		<Field Guid="{a4ba54ea-d461-463f-a57e-027f45090dd4}" Name="Stock" DataType="DECIMAL" Size="10" Places="2" ScreenPicture="@n-14.2" ScreenPrompt="Stock:" ReportHeading="Stock" Justification="DECIMAL" Offset="12" ReportControl=" STRING(@n-14.2),USE(INV:Stock),DECIMAL(12)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Stock:&apos;),USE(?INV:Stock:Prompt)"/>
+				<Line Text=" ENTRY(@n-14.2),USE(INV:Stock),DECIMAL(12)"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:43:42PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:43:42PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NOCHECKS"/>
+		</Field>
+		<Field Guid="{55764c38-c563-44cb-8fad-3778b0345db2}" Name="Reorder_Level" DataType="LONG" Size="4" ScreenPicture="@P###P" ScreenPrompt="Reorder Level:" ReportHeading="Reorder Level" Justification="RIGHT" Offset="1" ReportControl=" STRING(@P###P),USE(INV:Reorder_Level),RIGHT(1)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Reorder Level:&apos;),USE(?INV:Reorder_Level:Prompt)"/>
+				<Line Text=" SPIN(@P###P),USE(INV:Reorder_Level),RIGHT(1)"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:44:28PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:44:28PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NOCHECKS"/>
+		</Field>
+		<Field Guid="{523955ad-1d45-4d7d-91d8-1b8874ea6663}" Name="Reorder_Time" DataType="LONG" Size="4" ScreenPicture="@P###P" ScreenPrompt="Reorder Time:" ReportHeading="Reorder Time" Justification="RIGHT" Offset="1" ReportControl=" STRING(@P###P),USE(INV:Reorder_Time),RIGHT(1)">
+			<WindowControl>
+				<Line Text=" PROMPT(&apos;Reorder Time:&apos;),USE(?INV:Reorder_Time:Prompt)"/>
+				<Line Text=" SPIN(@P###P),USE(INV:Reorder_Time),RIGHT(1)"/>
+			</WindowControl>
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:44:57PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:44:57PM" ModifiedVersionNumber="1"/>
+			<Validity Check="NOCHECKS"/>
+		</Field>
+		<Key Guid="{3652ca4a-1b98-412d-99fc-dd8fcdbb33a6}" Order="1" Name="ID_Inventory_Key" KeyType="KEY" Unique="true" Primary="true" AutoNumber="true">
+			<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:45:13PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:45:52PM" ModifiedVersionNumber="1"/>
+			<Component Guid="{ef616637-1b60-4c8e-b33e-f6d134b7ed17}" FieldId="{59933bfd-32d2-40b9-88b8-213ea76a789e}" Order="1">
+				<Audit CreateUser="Administrator" CreateDate="17 APR 2014" CreateTime=" 1:45:52PM" CreateVersionNumber="1" ModifiedUser="Administrator" ModifiedDate="17 APR 2014" ModifiedTime=" 1:45:52PM" ModifiedVersionNumber="1"/>
+			</Component>
+		</Key>
+	</Table>
+</Dictionary>
+

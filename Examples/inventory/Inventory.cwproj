@@ -1,0 +1,93 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{5CD3F959-C8C4-4A08-A811-79367AC17FFE}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Inventory</RootNamespace>
+    <AssemblyName>Inventory</AssemblyName>
+    <OutputName>Inventory</OutputName>
+    <CWOutputType>Exe</CWOutputType>
+    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1%3b_WebCoreDllMode_=&gt;0%3b_WebCoreLinkMode_=&gt;1%3b_WebRunDllMode_=&gt;0%3b_WebRunLinkMode_=&gt;1%3b_APIDllMode_=&gt;0%3b_APILinkMode_=&gt;1%3b_GRAPHDllMode_=&gt;0%3b_GRAPHLinkMode_=&gt;1%3b_IbcDllMode_=&gt;1%3b_IbcLinkMode_=&gt;0%3b_MAIDllMode_=&gt;0%3b_MAILinkMode_=&gt;1%3b_WebAbcDllMode_=&gt;0%3b_WebAbcLinkMode_=&gt;1%3b_WinsockDllMode_=&gt;0%3b_WinsockLinkMode_=&gt;1%3b</DefineConstants>
+    <Model>Dll</Model>
+    <stack_size>16384</stack_size>
+    <CopyCore>True</CopyCore>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <vid>full</vid>
+    <check_stack>True</check_stack>
+    <check_index>True</check_index>
+    <warnings>on</warnings>
+    <GenerateMap>True</GenerateMap>
+    <line_numbers>True</line_numbers>
+    <OutputPath>C:\AppBroker\Exec\inventory</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <vid>off</vid>
+    <check_stack>False</check_stack>
+    <check_index>False</check_index>
+    <OutputPath>C:\AppBroker\Exec\inventory</OutputPath>
+    <warnings>on</warnings>
+    <GenerateMap>True</GenerateMap>
+    <line_numbers>False</line_numbers>
+  </PropertyGroup>
+  <ItemGroup>
+    <FileDriver Include="DOS" />
+    <FileDriver Include="TOPSPEED" />
+    <Compile Include="EFOCUS.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Inventory.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Inventory001.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Inventory002.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Inventory003.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="INVENTORY_BC.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="Inventory_BC0.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="INVEN_WB.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBPDFPREVIEW.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBPREVIEW.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBSTD.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBSTD2.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Library Include="3D-Shape-01_32x32.png" />
+    <Library Include="C%25V%25HTM%25X%25.LIB" />
+    <Library Include="C%25V%25IBC%25X%25.LIB" />
+    <Library Include="C%25V%25LAY%25X%25.LIB" />
+    <Library Include="Check_16x16.png" />
+    <Library Include="Inventory.EXE.manifest" />
+    <Library Include="No_Entry-WF_16x16.png" />
+    <Library Include="WBDUMMY.HTM" />
+    <Library Include="WBUNAUTH.HTM" />
+    <None Include="skeleton.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+  </ItemGroup>
+  <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
+</Project>

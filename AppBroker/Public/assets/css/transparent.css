@@ -1,0 +1,33 @@
+.transparent_input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #FFFF00;
+  font-size: 24px;
+  text-shadow: 1px 1px #999900;
+}
+
+
+.transparent_spin{
+  border: none;
+  color: none;
+  background: none;
+}
+
+.transparent_spin:hover{
+  border: none;
+  color: none;
+  background: none;
+}
+
+.noglyph{
+  border: none;
+  color: none;
+  background: none;
+  display:none;
+}
+
+.transparent_select {
+  border: 0;
+  background: transparent;
+}

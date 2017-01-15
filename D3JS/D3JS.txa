@@ -1,0 +1,66 @@
+[PROCEDURE]
+NAME Gauges_Options
+CATEGORY 'Window'
+[COMMON]
+DESCRIPTION 'Window'
+FROM ABC Window
+[DATA]
+[FILES]
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 1
+[ADDITION]
+NAME ABC CancelButton
+[INSTANCE]
+INSTANCE 2
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 3
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 4
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Window'),AT(,,260,160),RESIZE,IMM,GRAY,HLP('Gauges_Options'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  BUTTON('&OK'),AT(101,142,49,14),USE(?Ok),ICON('WAOK.ICO'),FLAT,MSG('Accept operation'),TIP('Accept Operation'),LEFT,#SEQ(1),#ORIG(?Ok)
+  BUTTON('&Cancel'),AT(154,142,49,14),USE(?Cancel),ICON('WACANCEL.ICO'),FLAT,MSG('Cancel Operation'),TIP('Cancel Operation'),LEFT,#SEQ(2),#ORIG(?Cancel)
+  BUTTON('&Help'),AT(207,142,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,STD(STD:Help),#SEQ(3),#ORIG(?Help)
+ END

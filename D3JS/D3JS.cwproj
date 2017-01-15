@@ -1,0 +1,70 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{74EC1B16-68C2-45B3-8E42-8540DF8CCA88}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>D3JS</AssemblyName>
+    <OutputName>D3JS</OutputName>
+    <DefineConstants>_ABCDllMode_=&gt;0%3b_ABCLinkMode_=&gt;1%3b_WebCoreDllMode_=&gt;0%3b_WebCoreLinkMode_=&gt;1%3b_WebRunDllMode_=&gt;0%3b_WebRunLinkMode_=&gt;1%3b_IbcDllMode_=&gt;1%3b_IbcLinkMode_=&gt;0%3b_WebAbcDllMode_=&gt;0%3b_WebAbcLinkMode_=&gt;1%3b</DefineConstants>
+    <Model>Dll</Model>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <vid>full</vid>
+    <check_stack>True</check_stack>
+    <check_index>True</check_index>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <vid>off</vid>
+    <check_stack>False</check_stack>
+    <check_index>False</check_index>
+    <OutputPath>..\..\..\..\..\..\..\..\AppBroker\Exec\d3js\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="D3JS.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="D3JS001.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="D3JS002.clw">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="D3JS_BC.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="D3JS_BC0.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="D3JS_WB.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBSTD.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <Compile Include="WBSTD2.CLW">
+      <Generated>true</Generated>
+    </Compile>
+    <None Include="skeleton.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generated>True</Generated>
+      <ProjectGenerated>True</ProjectGenerated>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FileDriver Include="ASCII" />
+    <FileDriver Include="BASIC" />
+    <FileDriver Include="DOS" />
+    <FileDriver Include="TOPSPEED" />
+    <Library Include="C%25V%25HTM%25X%25.LIB" />
+    <Library Include="C%25V%25IBC%25X%25.LIB" />
+    <Library Include="C%25V%25LAY%25X%25.LIB" />
+    <Library Include="WBDUMMY.HTM" />
+    <Library Include="WBUNAUTH.HTM" />
+  </ItemGroup>
+  <Import Project="$(ClarionBinPath)\SoftVelocity.Build.Clarion.targets" />
+</Project>

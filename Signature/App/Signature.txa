@@ -1,0 +1,368 @@
+[APPLICATION]
+PROCEDURE Main
+DICTIONARY 'C:\Users\mil.mx\Dropbox\Programming\C10\New Generation\H5\Signature\Signature.dct'
+[COMMON]
+FROM ABC
+[PROMPTS]
+%ActiveInvisible  DEFAULT (0)
+%AllowUnFilled    DEFAULT (0)
+%RetainRow        DEFAULT (1)
+%ResetOnGainFocus DEFAULT (0)
+%AutoToolBar      DEFAULT (1)
+%AutoRefresh      DEFAULT (1)
+[PROCEDURE]
+NAME Main
+[COMMON]
+DESCRIPTION 'Wizard Application for C:\Users\mil.mx\Dropbox\Programming\C10\New Generation\H5\Signature\Signature.dct'
+FROM ABC Frame
+[DATA]
+[FILES]
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSignatures') ('Call a Procedure')
+
+%ButtonRunName DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSignatures') ('')
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSignatures') ('')
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 1
+WHEN  ('?BrowseSignatures') (BrowseSignatures)
+
+%ButtonThread DEPEND %Control LONG TIMES 1
+WHEN  ('?BrowseSignatures') (1)
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 1
+WHEN  ('?BrowseSignatures') (50000)
+
+%ButtonParameters DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSignatures') ('')
+
+%ButtonRequest DEPEND %Control STRING TIMES 1
+WHEN  ('?BrowseSignatures') ('')
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[WINDOW]
+AppFrame APPLICATION('Application'),AT(,,505,318),STATUS(-1,80,120,45),MAX,RESIZE,ICON('WAFRAME.ICO'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  MENUBAR,USE(?Menubar)
+       MENU('&File'),USE(?FileMenu)
+       ITEM('&Print Setup ...'),USE(?PrintSetup),MSG('Setup printer'),STD(STD:PrintSetup)
+       ITEM,SEPARATOR
+       ITEM('E&xit'),USE(?Exit),MSG('Exit this application'),STD(STD:Close)
+       END
+       MENU('&Edit'),USE(?EditMenu)
+       ITEM('Cu&t'),USE(?Cut),MSG('Cut Selection To Clipboard'),STD(STD:Cut)
+       ITEM('&Copy'),USE(?Copy),MSG('Copy Selection To Clipboard'),STD(STD:Copy)
+       ITEM('&Paste'),USE(?Paste),MSG('Paste From Clipboard'),STD(STD:Paste)
+       END
+       MENU('&Browse'),USE(?BrowseMenu)
+       ITEM('Browse the Signatures file'),USE(?BrowseSignatures),MSG('Browse Signatures')
+       END
+       MENU('&Window'),USE(?WindowMenu),STD(STD:WindowList)
+       ITEM('T&ile'),USE(?Tile),MSG('Arrange multiple opened windows'),STD(STD:TileWindow)
+       ITEM('&Cascade'),USE(?Cascade),MSG('Arrange multiple opened windows'),STD(STD:CascadeWindow)
+       ITEM('&Arrange Icons'),USE(?Arrange),MSG('Arrange the icons for minimized windows'),STD(STD:ArrangeIcons)
+       END
+       MENU('&Help'),USE(?HelpMenu)
+       ITEM('&Contents'),USE(?Helpindex),MSG('View the contents of the help file'),STD(STD:HelpIndex)
+       ITEM('&Search for Help On...'),USE(?HelpSearch),MSG('Search for help on a subject'),STD(STD:HelpSearch)
+       ITEM('&How to Use Help'),USE(?HelpOnHelp),MSG('Provides general instructions on using help'),STD(STD:HelpOnHelp)
+       END
+  END
+ END
+[PROCEDURE]
+NAME BrowseSignatures
+CATEGORY 'Browse'
+[COMMON]
+DESCRIPTION 'Browse the Signatures file'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+Signatures
+[INSTANCE]
+1
+[KEY]
+SIGN:Signature_ID_Key
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC BrowseBox
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%AcceptToolbarControl LONG (0)
+%EnableQuickScan LONG  (0)
+
+%LocatorType DEFAULT  ('Step')
+%OverrideDefaultLocator DEFAULT ('')
+%OverrideLocator DEFAULT ('')
+
+%RecordFilter @S255  ('')
+
+%RangeField COMPONENT  ()
+
+%RangeLimitType DEFAULT  ('')
+%RangeLimit FIELD  ()
+%RangeLow FIELD  ()
+%RangeHigh FIELD  ()
+%RangeFile FILE  ()
+%ScrollBehavior DEFAULT  ('Movable Thumb')
+%ScrollKeyDistribution STRING  ('Runtime')
+%CustomKeyDistribution MULTI LONG  ()
+%KeyDistributionValue DEPEND %CustomKeyDistribution @S10 TIMES 0
+
+%ScrollAlpha LONG  (1)
+%ScrollNumeric LONG  (0)
+%ScrollAlt LONG  (0)
+%SortOrder MULTI LONG  (1)
+%SortCondition DEPEND %SortOrder @S255 TIMES 1
+WHEN  (1) ('CHOICE(?CurrentTab) = 2')
+%SortKey DEPEND %SortOrder KEY TIMES 1
+WHEN  (1) (SIGN:Signature_Name_Key)
+%SortLocatorType DEPEND %SortOrder DEFAULT TIMES 1
+WHEN  (1) ('Step')
+%SortOverrideDefaultLocator DEPEND %SortOrder DEFAULT TIMES 1
+WHEN  (1) ('')
+%SortOverrideLocator DEPEND %SortOrder DEFAULT TIMES 1
+WHEN  (1) ('')
+%SortRecordFilter DEPEND %SortOrder @S255 TIMES 1
+WHEN  (1) ('')
+%SortRangeField DEPEND %SortOrder COMPONENT TIMES 0 !HOLA 0
+%SortRangeLimit DEPEND %SortOrder FIELD TIMES 1
+WHEN  (1) ()
+%SortRangeLow DEPEND %SortOrder FIELD TIMES 1
+WHEN  (1) ()
+%SortRangeHigh DEPEND %SortOrder FIELD TIMES 1
+WHEN  (1) ()
+%SortRangeFile DEPEND %SortOrder FILE TIMES 1
+WHEN  (1) ()
+%SortRangeLimitType DEPEND %SortOrder DEFAULT TIMES 1
+WHEN  (1) ('')
+%SortScrollBehavior DEPEND %SortOrder DEFAULT TIMES 1
+WHEN  (1) ('Movable Thumb')
+%SortScrollKeyDistribution DEPEND %SortOrder STRING TIMES 1
+WHEN  (1) ('Runtime')
+%SortCustomKeyDistribution DEPEND %SortOrder MULTI LONG TIMES 0
+%SortKeyDistributionValue DEPEND %SortCustomKeyDistribution @S10 TIMES 1
+WHEN  (1)TIMES 0
+%SortScrollAlpha DEPEND %SortOrder LONG TIMES 1
+WHEN  (1) (1)
+%SortScrollNumeric DEPEND %SortOrder LONG TIMES 1
+WHEN  (1) (0)
+%SortScrollAlt DEPEND %SortOrder LONG TIMES 1
+WHEN  (1) (0)
+[ADDITION]
+NAME ABC BrowseViewButton
+[INSTANCE]
+INSTANCE 2
+PARENT 1
+[ADDITION]
+NAME ABC BrowseUpdateButtons
+[INSTANCE]
+INSTANCE 3
+PARENT 1
+PROCPROP
+[PROMPTS]
+%UpdateProcedure PROCEDURE  (UpdateSignatures)
+%EditViaPopup LONG  (1)
+[ADDITION]
+NAME ABC CloseButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 5
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 6
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Browse the Signatures file'),AT(,,224,198),IMM,RESIZE,GRAY,MDI,HLP('BrowseSignatures'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+    LIST,AT(8,30,208,124),USE(?Browse:1),MSG('Browsing the Signatures file'),IMM,HVSCROLL,|
+      FORMAT('64R(2)|M~Signature ID~C(0)@n-14@80L(2)|M~Name~L(2)@s128@'),|
+      FROM(Queue:Browse:1),#SEQ(1),#ORIG(?List),#FIELDS(SIGN:Signature_ID,SIGN:Name)
+    BUTTON('&View'),AT(8,158,49,14),USE(?View:2),ICON('WAVIEW.ICO'),FLAT,MSG('View Record'),TIP('View Record'),LEFT,#SEQ(2),#ORIG(?View)
+    BUTTON('&Insert'),AT(61,158,49,14),USE(?Insert:3),ICON('WAINSERT.ICO'),FLAT,MSG('Insert a Record'),TIP('Insert a Record'),LEFT,#SEQ(3),#ORIG(?Insert),#LINK(?Change:3)
+    BUTTON('&Change'),AT(114,158,49,14),USE(?Change:3),ICON('WACHANGE.ICO'),FLAT,MSG('Change the Record'),TIP('Change the Record'),LEFT,DEFAULT,#SEQ(3),#ORIG(?Change),#LINK(?Delete:3)
+    BUTTON('&Delete'),AT(167,158,49,14),USE(?Delete:3),ICON('WADELETE.ICO'),FLAT,MSG('Delete the Record'),TIP('Delete the Record'),LEFT,#SEQ(3),#ORIG(?Delete),#LINK(?Insert:3)
+  SHEET,AT(4,4,216,172),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) Signature_ID_Key'),USE(?Tab:2)
+    END
+    TAB('&2) Signature_Name_Key'),USE(?Tab:3)
+    END
+  END
+  BUTTON('&Close'),AT(118,180,49,14),USE(?Close),ICON('WACLOSE.ICO'),FLAT,MSG('Close Window'),TIP('Close Window'),LEFT,#SEQ(4),#ORIG(?Close)
+  BUTTON('&Help'),AT(171,180,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,STD(STD:Help),#SEQ(5),#ORIG(?Help)
+ END
+[PROCEDURE]
+NAME UpdateSignatures
+CATEGORY 'Form'
+[COMMON]
+DESCRIPTION 'Form Signatures'
+FROM ABC Window
+[DATA]
+CurrentTab                STRING(80)
+[FILES]
+[PRIMARY]
+Signatures
+[INSTANCE]
+2
+[PROMPTS]
+%ButtonAction DEPEND %Control STRING TIMES 0
+
+%ButtonRunName DEPEND %Control STRING TIMES 0
+
+%ButtonRunParameters DEPEND %Control STRING TIMES 0
+
+%ButtonProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ButtonThread DEPEND %Control LONG TIMES 0
+
+%ButtonThreadStack DEPEND %Control @n7 TIMES 0
+
+%ButtonParameters DEPEND %Control STRING TIMES 0
+
+%ButtonRequest DEPEND %Control STRING TIMES 0
+
+%PreLookupKey DEPEND %Control KEY TIMES 0
+
+%PreLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PreLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%PostLookupKey DEPEND %Control KEY TIMES 0
+
+%PostLookupField DEPEND %Control COMPONENT TIMES 0
+
+%PostLookupProcedure DEPEND %Control PROCEDURE TIMES 0
+
+%ForceWindowRefresh DEPEND %Control LONG TIMES 0
+[ADDITION]
+NAME ABC RecordValidation
+[INSTANCE]
+INSTANCE 1
+PROCPROP
+[PROMPTS]
+%ValidateOnAccept LONG  (1)
+%ValidateOnNonStopSelect LONG  (1)
+%ControlsExcluded MULTI LONG  ()
+%ControlToExclude DEPEND %ControlsExcluded STRING TIMES 0
+[ADDITION]
+NAME ABC SaveButton
+[INSTANCE]
+INSTANCE 2
+PROCPROP
+[PROMPTS]
+%InsertAllowed LONG  (1)
+%InsertMessage @S40  ('Record Will Be Added')
+%ChangeAllowed LONG  (1)
+%ChangeMessage @S40  ('Record Will Be Changed')
+%DeleteAllowed LONG  (1)
+%DeleteMessage @S40  ('Record Will Be Deleted')
+%ViewMessage @S40  ('View Record')
+%MessageHeader LONG  (0)
+%ActionOnDelete STRING  ('Standard Warning')
+%PrimingFields MULTI LONG  ()
+%PrimedField DEPEND %PrimingFields FIELD TIMES 0
+
+%PrimedValue DEPEND %PrimingFields @S255 TIMES 0
+
+%ActionOnCancel STRING  ('Confirm cancel')
+%MessageLocation STRING  ('Title Bar')
+%MessageStatusSection @n1  (0)
+
+%HistoryKey        DEFAULT (CtrlH)
+
+%AppendToTitle LONG  ()
+%AppendToTitleID @S255  ('')
+[ADDITION]
+NAME ABC CancelButton
+[INSTANCE]
+INSTANCE 3
+[ADDITION]
+NAME ABC HelpButton
+[INSTANCE]
+INSTANCE 4
+[ADDITION]
+NAME ABC ViewFormActions
+[INSTANCE]
+INSTANCE 5
+[ADDITION]
+NAME ABC WindowResize
+[INSTANCE]
+INSTANCE 6
+[PROMPTS]
+%UseAppStrategy    DEFAULT (1)
+%AppStrategy       DEFAULT ('Surface')
+%RestrictMinSize   DEFAULT (1)
+%WindowMinWidth    DEFAULT (0)
+%WindowMaxWidth    DEFAULT (0)
+[WINDOW]
+QuickWindow WINDOW('Form Signatures'),AT(,,358,78),RESIZE,IMM,GRAY,MDI,HLP('UpdateSignatures'),FONT('Microsoft Sans Serif',8,,400,1),CENTER,SYSTEM
+  SHEET,AT(4,4,350,52),USE(?CurrentTab),#ORIG(CurrentTab)
+    TAB('&1) General'),USE(?Tab:1)
+         PROMPT('Signature ID:'),USE(?SIGN:Signature_ID:Prompt),TRN,AT(8,20),#ORIG(?SIGN:Signature_ID:Prompt),#LINK(SIGN:Signature_ID)
+         ENTRY(@n-14),USE(SIGN:Signature_ID),RIGHT(1),AT(72,20,64,10),#ORIG(SIGN:Signature_ID),#LINK(?SIGN:Signature_ID:Prompt)
+         PROMPT('Name:'),USE(?SIGN:Name:Prompt),TRN,AT(8,34),#ORIG(?SIGN:Name:Prompt),#LINK(SIGN:Name)
+         ENTRY(@s128),USE(SIGN:Name),AT(72,34,278,10),#ORIG(SIGN:Name),#LINK(?SIGN:Name:Prompt)
+    END
+    TAB('&2) Signature_Memo'),USE(?Tab:2)
+         PROMPT('Signature Memo:'),USE(?SIGN:Signature_Memo:Prompt),TRN,AT(8,20),#ORIG(?SIGN:Signature_Memo:Prompt),#LINK(SIGN:Signature_Memo)
+         TEXT,USE(SIGN:Signature_Memo),AT(72,20,278,32),#ORIG(SIGN:Signature_Memo),#LINK(?SIGN:Signature_Memo:Prompt)
+    END
+  END
+  BUTTON('&OK'),AT(199,60,49,14),USE(?OK),ICON('WAOK.ICO'),FLAT,MSG('Accept data and close the window'),TIP('Accept data and close the window'),LEFT,DEFAULT,#SEQ(2),#ORIG(?OK)
+  BUTTON('&Cancel'),AT(252,60,49,14),USE(?Cancel),ICON('WACANCEL.ICO'),FLAT,MSG('Cancel operation'),TIP('Cancel operation'),LEFT,#SEQ(3),#ORIG(?Cancel)
+  BUTTON('&Help'),AT(305,60,49,14),USE(?Help),ICON('WAHELP.ICO'),FLAT,MSG('See Help Window'),TIP('See Help Window'),LEFT,STD(STD:Help),#SEQ(4),#ORIG(?Help)
+ END
